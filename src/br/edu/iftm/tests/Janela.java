@@ -14,12 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.html.MinimalHTMLWriter;
 
-	
 public class Janela extends JFrame{
 	
-	boolean Play = true;
-	
+	boolean play = true;
+	boolean reset = false;
+
 	JPanel panelFlecha;
 	JLabel labelHora;
 	JLabel labelMinutos;
@@ -33,7 +34,7 @@ public class Janela extends JFrame{
 		this.setFocusable(false);
 		this.setSize(700, 500);
 		this.setLayout(null);
-		this.setTitle("Cronômetro do Flecha");
+		this.setTitle("Cronï¿½metro do Flecha");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.preencheTela();
@@ -53,7 +54,7 @@ public class Janela extends JFrame{
 		
 		// Inicializando o JLabel de horas
 		labelHora = new JLabel();
-		labelHora.setText("00");
+		labelHora.setText("/");
 		labelHora.setLayout(null);
 		labelHora.setVisible(true);
 		labelHora.setBounds(60, 140, 160, 110);
@@ -62,7 +63,7 @@ public class Janela extends JFrame{
 		
 		// Inicializando o JLabel de minutos
 		labelMinutos = new JLabel();
-		labelMinutos.setText("00");
+		labelMinutos.setText("/");
 		labelMinutos.setLayout(null);
 		labelMinutos.setVisible(true);
 		labelMinutos.setBounds(240, 140, 160, 110);
@@ -71,7 +72,7 @@ public class Janela extends JFrame{
 		
 		// Inicializando o JLabel de segundos
 		labelSegundos = new JLabel();
-		labelSegundos.setText("00");
+		labelSegundos.setText("/");
 		labelSegundos.setLayout(null);
 		labelSegundos.setVisible(true);
 		labelSegundos.setBounds(420, 140, 160, 110);
@@ -81,7 +82,7 @@ public class Janela extends JFrame{
 		
 		// Inicializando o JLabel de milissegundos
 		labelMilissegundos = new JLabel();
-		labelMilissegundos.setText("00");
+		labelMilissegundos.setText("");
 		labelMilissegundos.setLayout(null);
 		labelMilissegundos.setVisible(true);
 		labelMilissegundos.setBounds(570, 170, 160, 110);
@@ -89,10 +90,10 @@ public class Janela extends JFrame{
 		panelFlecha.add(labelMilissegundos);
 		
 		
-		// Inicializando o botão de play/pause
+		// Inicializando o botï¿½o de play/pause
 		btnPlayPause = new JButton();
 		btnPlayPause.setLayout(null);
-		btnPlayPause.setIcon(new ImageIcon("./images/jogar.png"));
+		btnPlayPause.setIcon(new ImageIcon("./images/pausa.png"));
 		btnPlayPause.setVisible(true);
 		btnPlayPause.setBounds(300, 320, 65, 65);
 		btnPlayPause.setBorderPainted(false);
@@ -101,20 +102,25 @@ public class Janela extends JFrame{
 		btnPlayPause.setContentAreaFilled(false);
 		//btnPlayPause.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Titulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 70, 214)));
 		panelFlecha.add(btnPlayPause);
-		
 		btnPlayPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(Play == true){
-					Play = false;
-					btnPlayPause.setIcon(new ImageIcon("./images/pausa.png"));
-				}else{
-					Play = true;
+				if(play == true){
+					play = false;
+					reset = false;
+					System.out.println("Pause");
 					btnPlayPause.setIcon(new ImageIcon("./images/jogar.png"));
+				}else{
+					play = true;
+					reset = false;
+					System.out.println("Play");
+					btnPlayPause.setIcon(new ImageIcon("./images/pausa.png"));
 					
 				}
 			}
 		});
-		// Inicializando o botão de play/pause
+
+	
+		// Inicializando o botï¿½o de play/pause
 		btnReset = new JButton();
 		btnReset.setLayout(null);
 		btnReset.setIcon(new ImageIcon("./images/reset.png"));
@@ -127,10 +133,27 @@ public class Janela extends JFrame{
 		panelFlecha.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("a");
+				System.out.println("Stop");
+				reset = true;
 			}
 		});
-				
+
+		
+	}
+
+	public void setTimes(int hour, int mim, int secs, long milisecs) {
+		labelHora.setText(""+hour);
+		labelMinutos.setText("/"+mim);
+		labelSegundos.setText("/"+secs);
+		labelMilissegundos.setText("/"+milisecs);
+	}
+
+	public boolean verificar(){
+		return play;
+	}
+
+	public boolean verificar_stop(){
+		return reset;
 	}
 
 }
