@@ -45,7 +45,7 @@ public class tempo implements Runnable {
         }
 
     }
-    //FunÃ§Ã£o mais precisa em segundos
+    //Função mais precisa em segundos
     /*public void aguarde(Thread t) {
         try {
             Thread.sleep(1000);
@@ -55,7 +55,7 @@ public class tempo implements Runnable {
 
     }*/
 
-    //FunÃ§Ã£o que conta miliseg mas com 2 milliseg de atraso
+    //Função que conta miliseg mas com 2 milliseg de atraso
     public void aguarde(Thread t) {
         while(this.millisec < 1000){
             try {
