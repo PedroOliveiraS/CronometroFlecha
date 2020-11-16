@@ -30,6 +30,9 @@ public class Janela extends JFrame{
 	JLabel labelSep01;
 	JLabel labelSep02;
 	JLabel labelSep03;
+
+	private int hora,minuto,segun;
+	private long mili;
 	
 	JButton btnPlayPause;
 	JButton btnReset;
@@ -111,12 +114,13 @@ public class Janela extends JFrame{
 				if(play == true){
 					play = false;
 					reset = false;
-					System.out.println("Pause");
+					//System.out.println("Pause");
 					btnPlayPause.setIcon(new ImageIcon("./images/jogar.png"));
 				}else{
 					play = true;
+					tempo a = new tempo(hora,minuto,segun,mili);
 					reset = false;
-					System.out.println("Play");
+					//System.out.println("Play");
 					btnPlayPause.setIcon(new ImageIcon("./images/pausa.png"));
 					
 				}
@@ -124,7 +128,7 @@ public class Janela extends JFrame{
 		});
 
 	
-		// Inicializando o botão de reset
+		// Inicializando o botï¿½o de reset
 		btnReset = new JButton();
 		btnReset.setLayout(null);
 		btnReset.setIcon(new ImageIcon("./images/reset.png"));
@@ -137,7 +141,8 @@ public class Janela extends JFrame{
 		panelFlecha.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Stop");
+				btnPlayPause.setIcon(new ImageIcon("./images/jogar.png"));
+				//System.out.println("Stop");
 				reset = true;
 			}
 		});
@@ -162,6 +167,10 @@ public class Janela extends JFrame{
 	}
 
 	public void setTimes(int hour, int mim, int secs, long milisecs) {
+		hora = hour;
+		minuto= mim;
+		segun = secs;
+		mili = milisecs;
 		labelHora.setText(String.format("%02d",hour));
 		labelMinutos.setText(String.format("%02d",mim));
 		labelSegundos.setText(String.format("%02d",secs));
