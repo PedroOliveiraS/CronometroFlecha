@@ -11,7 +11,7 @@ O trabalho se baseia na ideia da criação de contador, similar aos contadores d
 
 ## Screenshots da tela
 ### Screenshot da tela inicial
-![](images/assets/imagem01.jpg) 
+![](images/assets/imagem01.png) 
 - A imagem acima demonstra como a tela do programa funciona. 
 
 ### Screenshot detalhada
